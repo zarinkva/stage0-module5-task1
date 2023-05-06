@@ -1,9 +1,4 @@
 package com.epam.mjc.stage0;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Arrays;
-import java.util.Comparator;
-
 
 /**
  * Here are the tasks for working with the arrays.
@@ -16,8 +11,7 @@ public class ArrayTasks {
      * Return a String[] array that will list all the seasons of the year, starting with winter.
      */
     public String[] seasonsArray() {
-return new String[]{"winter","spring","summer","autumn"};
-
+        return new String[]{"winter","spring","summer","autumn"};
     }
 
     /**
@@ -109,50 +103,18 @@ return new String[]{"winter","spring","summer","autumn"};
      * arr = [1, 2]         -> [1, 2]
      */
     public int[] getOnlyPositiveNumbers(int[] arr) {
-        List<Integer> positiveNumbers = new ArrayList<>();
+        int positiveIndexArray = 0;
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] > 0) {
-                positiveNumbers.add(arr[i]);
+                arr[positiveIndexArray] = arr[i];
+                positiveIndexArray ++;
             }
         }
-        int[] result = new int[positiveNumbers.size()];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = positiveNumbers.get(i);
-        }
-        return result;
-    }
 
-    /**
-     * Return a sorted, ragged, two-dimensional int[][] array following these rules:
-     * Incoming one-dimensional arrays must be arranged in ascending order of their length;
-     * numbers in all one-dimensional arrays must be in ascending order.
-     * <p>
-     * Example:
-     * <p>
-     * arr = [[3, 1, 2,], [3,2]] -> [[2, 3], [1, 2, 3]]
-     * arr = [[5, 4], [7]]       -> [[7], [4, 5]]
-     */
-    public int[][] sortRaggedArray(int[][] arr) {
-        Arrays.sort(arr, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] a, int[] b) {
-                if (a.length < b.length) {
-                    return -1;
-                } else if (a.length > b.length) {
-                    return 1;
-                } else {
-                    for (int i = 0; i < a.length; i++) {
-                        if (a[i] < b[i]) {
-                            return -1;
-                        } else if (a[i] > b[i]) {
-                            return 1;
-                        }
-                    }
-                    return 0;
-                }
-            }
-        });
-        return arr;
+        int[] positiveNumbers = new int[positiveIndexArray];
+        for (int i = 0; i < positiveNumbers.length; i++) {
+            positiveNumbers[i] = arr[i];
+        }
+        return positiveNumbers;
     }
 }
-
